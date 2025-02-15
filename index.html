@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storytelling with Data - Blog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll(".section-box");
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            }, { threshold: 0.2 });
+    
+            sections.forEach((section) => {
+                observer.observe(section);
+            });
+        });
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            background: rgba(0, 0, 120, 0.5);
+            padding: 20px 50px;
+            color: white;
+            background: url("DALL·E 2025-02-15 15.02.54 - A digital illustration featuring multiple data science and statistics-related graphs. The image includes a scatter plot with visible clusters, .webp") no-repeat center center/cover;
+        }
+
+        .logo {
+            font-size: 48px;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Introduction Section */
+        .introduction {
+            text-align: justify;
+            padding: 60px 20px;
+            background: white;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.8;
+            text-transform: uppercase;
+            width: 96%; /* Reduced width by 0.1 on both left and right */
+        }
+
+        .introduction h1 {
+            font-size: 36px;
+            color: #003366;
+            text-align: center;
+        }
+
+        .introduction p {
+            text-align: left;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 1.8;
+            text-transform: none;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .introduction li{
+            text-align: left;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.2;
+            text-transform: none;
+            width: 100%;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Topics Section */
+        .topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .topic {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 90%; /* Occupies full width with padding */
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .topic-text {
+            flex: 0.45; /* 45% space for text */
+            padding: 20px;
+            font-size: 18px;
+            text-align: justify;
+            font-family: 'Rajdhani', sans-serif;
+            line-height: 1.6;
+        }
+
+        .topic h2 {
+            font-size: 24px;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+
+        .topic-image {
+            flex: 0.55; /* 55% space for image */
+            height: 300px;
+            background:white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #003366;
+            color: white;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .topic {
+                flex-direction: column;
+                width: 95%;
+            }
+            .topic-text, .topic-image {
+                flex: 1;
+                width: 100%;
+            }
+        }
+       .section-box {
+    text-align: left;
+    padding: 60px 40px;
+    background: white;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.8;
+    width: 100%;
+    opacity: 0; /* Initially hidden */
+    transform: translateX(-100px); /* Initially off-screen */
+    transition: all 0.4s ease-in-out;
+}
+.section-box:nth-child(even) {
+    transform: translateX(100px); /* Moves right instead of left */
+}
+
+.section-box.show {
+    opacity: 1;
+    transform: translateX(0); /* Moves to original position */
+}
+.section-box h1 {
+    font-size: 36px;
+    color: #003366;
+    text-align: left;
+}
+.data-processing {
+    list-style: none;
+    padding: 20px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.data-processing li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background: #eef4ff;
+    border-left: 5px solid #003366;
+    border-radius: 5px;
+}
+
+.data-processing li strong {
+    color: #003366;
+    font-weight: 700;
+}
+
+.data-processing ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.data-processing ul li {
+    background: #f7fbff;
+    border-left: 3px solid #0077b6;
+}
+.section-box {
+    text-align: left;
+    padding: 50px;
+    background: white;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.8;
+    width: 80%;
+}
+
+.section-box h1 {
+    font-size: 28px;
+    color: #003366;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #003366;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.section-list {
+    list-style: none;
+    padding: 0;
+    font-size: 18px;
+}
+
+.section-list li {
+    margin-bottom: 15px;
+    padding: 12px;
+    background: #eef4ff;
+    border-left: 5px solid #003366;
+    border-radius: 5px;
+}
+
+.section-list li strong {
+    color: #003366;
+    font-weight: bold;
+}
+
+.section-list ul {
+    margin-top: 10px;
+    padding-left: 20px;
+}
+
+.section-list ul li {
+    background: #f7fbff;
+    border-left: 3px solid #0077b6;
+    padding: 8px;
+}
+
+
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">Storytelling with Data</div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section class="section-box">
+        <h1>Devices and Usage</h1>
+        <p>As a data science undergrad, I have always been fascinated by information and numbers. Recently, as I was planning to buy a new device, I conducted a survey among students at my college about the devices they use. I gained some fascinating insights, which I present in this blog.</p>
+    </section>
+    <section class="section-box">
+        <h1>Data Collection </h1>
+        <p> For the data collection ,I floated a google survey form among the students of the college which consisted of the following questions:-  </p>
+        <ul clss="section-list">
+            <li>User's age</li>
+            <li>Brand of Smartphone</li>
+            <li>How long they have been using the device?</li>
+            <li>Price of smartphone</li>
+          </ul>
+        <p>I received a very positive response and a total of 125 entries were recieved,Now after this the data was formulated into a xlsx from which we recieved a .csv file upon which the further operations were performed. </p>  
+    </section>
+    
+
+<!-- New Sections -->
+<section class="section-box">
+    <h1>Data Cleaning and Pre Processing</h1>
+    <p>The following operations were performed:- </p>
+    <ul class="data-processing">
+        <li><strong>Converted Data Types:</strong> The <i>‘Price of Smartphone’</i> column was converted to a numeric type for proper analysis.</li>
+        <li><strong>Handled Missing Values:</strong> Missing values in the <i>‘Price of Smartphone’</i> column were replaced with the median price.</li>
+        <li><strong>Removed Anomalies:</strong>
+            <ul>
+                <li>Entries with unrealistic smartphone ages (>10 years) were removed.</li>
+                <li>Extreme price values (>₹100,000) were also excluded.</li>
+            </ul>
+        </li>
+    </ul>
+</section>   
+<section class="section-box">
+    <h1>Summary Statistics</h1>
+    <p>After cleaning and augmentation, the dataset contains <strong>80 entries</strong>were left remaining and their  Key statistics include:</p>
+    <ul>
+        <li><strong>Average smartphone age:</strong> 2.1 years</li>
+        <li><strong>Median smartphone price:</strong> ₹20,000</li>
+        <li><strong>Price range:</strong> ₹10,000 – ₹70,000</li>
+        <li><strong>Age range of respondents:</strong> 17 – 28 years</li>
+    </ul>
+</section>
+
+<section class="section-box">
+    <h1>Visualizations and Insights</h1>
+    <ul>
+        <li>
+            <h3>Age Distribution</h3>
+            <p>The majority of respondents are between <strong>18-21 years old</strong>, indicating a younger demographic which is becuase majority of studetns in the insitute are pursuing bachelors.</p>
+        </li>
+        <li>
+            <h3>Smartphone Age Distribution</h3>
+            <p>Most users have smartphones aged between <strong>1-3 years</strong>, suggesting frequent upgrades.</p>
+        </li>
+        <li>
+            <h3>Price Distribution</h3>
+            <p>The price distribution is skewed, with most smartphones priced between <strong>₹15,000 - ₹25,000</strong>. A few premium smartphones (<strong>₹70,000+</strong>) are owned by a small fraction of users.</p>
+        </li>
+    </ul>
+</section>
+
+    <!-- Topics Section -->
+    <section class="topics">
+        <div class="topic">
+            <div class="topic-image"><img src="Screenshot 2025-02-15 183553.png" alt="Most Used Smartphone" width="100%" height="100%">
+            </div>
+            <div class="topic-text">
+                <h2>What's the most used smartphone?? &#129300;</h2>
+                <p>We can see redmi is the most popular while google pixel 7 being the least , Other brands such as vivo,oppo,oneplus etc. also share a respectable amount of share in the smartphone userbase.
+                </p>
+                
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-image"><img src="download (5).png" alt="Most Used Smartphone" width="100%" height="100%"></div>
+            <div class="topic-text">
+                <h2>Which brand offers the best durability?&#9200;</h2>   
+                <p>Long-lasting devices are key for students. So lets see which  brands hold up the best? For that we have plotted the voilin plot between the smarthpone brands are their durablity</p>
+                <p>From the violin plot we can see that devices of brand oppo ,redmi,vivo have the highest probablity of working in a fine condition even after a long period of usage.So if someone is looking for durablity these are the best options</p>
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-image"><img src="download (6).png" alt="Most Used Smartphone" width="100%" height="100%"></div>
+            <div class="topic-text">
+                <h2>Smartphones Budget Constraints &#128176;</h2>
+                <p>Students usually have a budget constraint while buying anything , so a smatphone  brand vs price boxplot will be beneficial for the analysis </p>
+                <p>As we can see that samsung ,oppo ,poco ,redmi have the least price ranges so they are a good choice and a budget of 20,000 to 30,000 is a sufficeint budget for buying a smartphone and the minimum amount requires is near to 8000-9000(which might be a second hand device) </p>
+
+            </div>
+        </div>
+
+        <div class="topic">
+            <div class="topic-image"><img src="download (8).png" alt="Most Used Smartphone" width="100%" height="100%"></div>
+            <div class="topic-text">
+                <h2>Price Vs Years?</h2>
+                <p>Does prcing really affect the durabltiy to answer this lets draw a violinplot with certain ranges</p>
+                <p>We can observe that fom 10k-40K most of the devices have durablity of 2 years or less only above 40k also the durablity just has some upward shift and might be increasing by a year on an average so we can say that price does have affect on durablity i.e as price increases durablity also increase but that increase is very slight so for the sake of durablity its not recommended to buy a costly device. </p>
+            </div>
+        </div>
+
+       
+
+        
+    </section>
+    <section class="section-box">
+        <h1>Conclusion</h1>
+     <p>After the survey we can infer the follwoing statements:-</p>
+     <ul>
+        <li>Redmi is the most popular smartphone brand among students so buying a Redmi device might be preffered.</li>
+        <li>If durablity is a concern then devices like oppo,redmi,vivo can be preffered</li>
+        <li>A budget of 20,000 to 30,000 is sufficient for buying a new smartphone with a great performance</li>
+        <li>Price is not a important metric for durablity</li>
+     </ul>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+         Made by Farhan Alam(12340740)
+    </footer>
+
+</body>
+</html>
+
